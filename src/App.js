@@ -12,11 +12,11 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setAppointmentList(data);
-      }, []);
-  });
+      });
+  }, []);
 
   useEffect(() => {
-    fetchData()
+    fetchData();
   }, [fetchData]);
 
   return (
@@ -30,7 +30,17 @@ function App() {
 
       <ul className="divide-y divide-gray-200">
         {appointmentList.map((appointment) => (
-          <AppointmentInfo key={appointment.id} appointment={appointment} />
+          <AppointmentInfo
+            key={appointment.id}
+            appointment={appointment}
+            onDeleteAppointment={(appointmentId) =>
+              setAppointmentList(
+                appointmentList.filter(
+                  (appointment) => appointment.id !== appointmentId
+                )
+              )
+            }
+          />
         ))}
       </ul>
     </div>
