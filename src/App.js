@@ -2,6 +2,8 @@ import { BiCalendar } from "react-icons/bi";
 
 import Search from "./components/Search";
 import AddAppointment from "./components/AddAppointment";
+import appointmentList from "./data.json";
+import AppointmentInfo from "./components/AppointmentInfo";
 
 function App() {
   return (
@@ -12,6 +14,12 @@ function App() {
       </h1>
       <AddAppointment />
       <Search />
+
+      <ul className="divide-y divide-gray-200">
+        {appointmentList.map((appointment) => (
+          <AppointmentInfo key={appointment.id} appointment={appointment} />
+        ))}
+      </ul>
     </div>
   );
 }
