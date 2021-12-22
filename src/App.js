@@ -19,7 +19,9 @@ function App() {
     )
     .sort((a, b) => {
       let order = orderBy === "asc" ? 1 : -1;
-      return a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1 * order : 1 * order;
+      return a[sortBy].toLowerCase() < b[sortBy].toLowerCase()
+        ? -1 * order
+        : 1 * order;
     });
 
   const fetchData = useCallback(() => {
@@ -41,7 +43,14 @@ function App() {
         Appointments
       </h1>
       <AddAppointment />
-      <Search query={query} onQueryChange={(myQuery) => setQuery(myQuery)} />
+      <Search
+        query={query}
+        onQueryChange={(myQuery) => setQuery(myQuery)}
+        orderBy={orderBy}
+        onOrderByChange={(myOrder) => setOrderBy(myOrder)}
+        sortBy={sortBy}
+        onSortByChange={(mySort) => setSortBy(mySort)}
+      />
 
       <ul className="divide-y divide-gray-200">
         {filteredAppointments.map((appointment) => (
